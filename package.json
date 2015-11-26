@@ -1,0 +1,27 @@
+{
+  "name": "trailpack-router",
+  "version": "0.0.0",
+  "description": "Trailpack Router",
+  "main": "index.js",
+  "dependencies": {
+    "joi": "^7.0.0",
+    "lodash": "^3.10.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trailsjs/trails-router.git"
+  },
+  "keywords": [
+    "trailsjs"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/trailsjs/trails-router/issues"
+  },
+  "homepage": "https://github.com/trailsjs/trails-router#readme"
+}

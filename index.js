@@ -20,10 +20,6 @@ module.exports = class Router extends Trailpack {
     super(app, require('./config'))
   }
 
-  getName () {
-    return 'router'
-  }
-
   validate () {
     return Promise.all(this.app.config.routes, lib.Validator.validateRoute)
   }

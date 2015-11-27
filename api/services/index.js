@@ -1,0 +1,1 @@
+exports.FootprintService = require('./FootprintService')

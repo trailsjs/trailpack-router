@@ -18,7 +18,7 @@ const lib = require('./lib')
 module.exports = class Router extends Trailpack {
 
   constructor (app, config) {
-    super(app, require('./config'))
+    super(app, require('./config'), require('./api'))
   }
 
   validate () {

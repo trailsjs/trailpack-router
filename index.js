@@ -1,5 +1,6 @@
 'use strict'
 
+const _ = require('lodash')
 const Trailpack = require('trailpack')
 const lib = require('./lib')
 
@@ -54,12 +55,12 @@ module.exports = class Router extends Trailpack {
 
     return this.app.after('trailpack:core:configured')
       .then(() => {
-        let config = this.app.config
-        let modelFootprintRoutes = Footprints.getModelRoutes(config)
-        let controllerFootprintRoutes = Footprints.getControllerRoutes(config)
+        let modelFootprintRoutes = lib.Footprints.getModelRoutes(this.config)
+        let controllerFootprintRoutes = lib.Footprints.getControllerRoutes(this.config)
+        let footprintRoutes = _.union(modelFootprintRoutes, controllerFootprintRoutes)
 
         this.app.routes = this.app.routes.concat(
-          lib.Transformer.mergeCustomRoutes(this.app.config.routes, footprintRoutes)
+          lib.Transformer.mergeCustomRoutes(this.config.routes, footprintRoutes)
         )
       })
   }

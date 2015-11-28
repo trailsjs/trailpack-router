@@ -6,8 +6,6 @@
  */
 module.exports = {
 
-  name: 'router',
-
   pkg: require('../package'),
 
   /**

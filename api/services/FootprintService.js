@@ -4,7 +4,6 @@
 module.exports = {
   create (model, id) {
 
-
   },
   find (model, criteria) {
 

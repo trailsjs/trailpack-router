@@ -25,8 +25,15 @@ module.exports = class Router extends Trailpack {
     return Promise.all(this.app.config.routes, lib.Validator.validateRoute)
   }
 
+  configure () {
+    this.models = _.mapKeys(this.app.api.models, (model, modelName) => {
+      return modelName.toLowerCase()
+    })
+  }
+
   /**
-   * Merge route configuration and store in app.routes.
+   * Merge route configuration and store in app.routes. Trailpacks that wish to
+   * extend/add new routes should do so in the configure() lifecycle method.
    *
    * 1. ETL controller handlers into the standard route format.
    *    api.controllers.handlers  --> (map)
@@ -50,18 +57,17 @@ module.exports = class Router extends Trailpack {
    *    Delete    | DELETE | /model/{id?} | .destroy
    *    
    */
-  configure () {
+  initialize () {
     this.app.routes || (this.app.routes = [ ])
 
-    return this.app.after('trailpack:core:configured')
-      .then(() => {
-        let modelFootprintRoutes = lib.Footprints.getModelRoutes(this.config)
-        let controllerFootprintRoutes = lib.Footprints.getControllerRoutes(this.config)
-        let footprintRoutes = _.union(modelFootprintRoutes, controllerFootprintRoutes)
+    let modelFootprintRoutes = lib.Footprints.getModelRoutes(this.config)
+    let controllerFootprintRoutes = lib.Footprints.getControllerRoutes(this.config)
+    let footprintRoutes = _.union(modelFootprintRoutes, controllerFootprintRoutes)
 
-        this.app.routes = this.app.routes.concat(
-          lib.Transformer.mergeCustomRoutes(this.config.routes, footprintRoutes)
-        )
-      })
+    this.app.routes = this.app.routes.concat(
+      lib.Transformer.mergeCustomRoutes(this.config.routes, footprintRoutes)
+    )
+
+    return Promise.resolve()
   }
 }

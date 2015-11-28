@@ -8,6 +8,8 @@ module.exports = {
 
   name: 'router',
 
+  pkg: require('../package'),
+
   /**
    * Define the API resources are provided by this trailpack
    */

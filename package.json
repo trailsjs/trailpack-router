@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/trailsjs/trails-router.git"
+    "url": "git+https://github.com/trailsjs/trailpack-router.git"
   },
   "keywords": [
     "trailsjs"
@@ -21,7 +21,7 @@
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/trailsjs/trails-router/issues"
+    "url": "https://github.com/trailsjs/trailpack-router/issues"
   },
-  "homepage": "https://github.com/trailsjs/trails-router#readme"
+  "homepage": "https://github.com/trailsjs/trailpack-router#readme"
 }

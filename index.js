@@ -57,18 +57,16 @@ module.exports = class Router extends Trailpack {
    *    Read      | GET    | /model/{id}  | .findOne
    *    Update    | PUT    | /model/{id?} | .update
    *    Delete    | DELETE | /model/{id?} | .destroy
-   *    
+   *
+   * 3. Attach Policies as prerequisites.
+   *    @see http://hapijs.com/api#route-prerequisites
    */
   initialize () {
-    this.app.routes || (this.app.routes = [ ])
+    let footprintRoutes = lib.RouteBuilder.buildFootprintRoutes(this.config, this.app.api)
+    let allRoutes = lib.RouteBuilder.buildCustomRoutes(this.config, footprintRoutes)
+    let completedRoutes = lib.RouteBuilder.buildRoutesWithPrerequisites(this.config, this.app.api, allRoutes)
 
-    let modelFootprintRoutes = lib.Footprints.getModelRoutes(this.config)
-    let controllerFootprintRoutes = lib.Footprints.getControllerRoutes(this.config)
-    let footprintRoutes = _.union(modelFootprintRoutes, controllerFootprintRoutes)
-
-    this.app.routes = this.app.routes.concat(
-      lib.Transformer.mergeCustomRoutes(this.config.routes, footprintRoutes)
-    )
+    this.app.routes = completedRoutes
 
     return Promise.resolve()
   }

@@ -2,9 +2,14 @@ module.exports = {
   models: {
     routes: {
       create: {
-        method: [ 'POST', 'PUT' ],
-        path: '/{model}/{id?}',
+        method: 'POST',
+        path: '/{model}',
         handler: 'FootprintController.create'
+      },
+      createWithId: {
+        method: 'PUT',
+        path: '/{model}/{id}',
+        handler: 'FootprintController.createWithId'
       },
       find: {
         method: 'GET',
@@ -31,6 +36,11 @@ module.exports = {
         path: '/{parentModel}/{parentId}/{childModel}',
         handler: 'FootprintController.createAssociation'
       },
+      createAssociationWithId: {
+        method: 'PUT',
+        path: '/{parentModel}/{parentId}/{childModel}/{childId}',
+        handler: 'FootprintController.createAssociationWithId'
+      },
       findAssociation: {
         method: 'GET',
         path: '/{parentModel}/{parentId}/{childModel}',
@@ -44,7 +54,7 @@ module.exports = {
       updateAssociation: {
         method: [ 'POST', 'PUT' ],
         path: '/{parentModel}/{parentId}/{childModel}/{childId?}',
-        handler: 'FootprintController.updateAssociations'
+        handler: 'FootprintController.updateAssociation'
       },
       destroyAssociation: {
         method: 'DELETE',

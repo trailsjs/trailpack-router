@@ -1,5 +1,6 @@
 module.exports = {
   FootprintController: {
+    create: [ 'FootprintPolicy.create' ],
     createWithId: [ 'FootprintPolicy.createWithId' ],
     find: [ 'FootprintPolicy.find' ],
     findOne: [ 'FootprintPolicy.findOne' ],

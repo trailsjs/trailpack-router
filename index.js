@@ -68,6 +68,8 @@ module.exports = class Router extends Trailpack {
 
     this.app.routes = completedRoutes
 
+
+
     return Promise.resolve()
   }
 }

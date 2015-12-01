@@ -26,5 +26,12 @@
   "bugs": {
     "url": "https://github.com/trailsjs/trailpack-router/issues"
   },
-  "homepage": "https://github.com/trailsjs/trailpack-router#readme"
+  "homepage": "https://github.com/trailsjs/trailpack-router#readme",
+  "eslintConfig": {
+    "env": {
+      "es6": true,
+      "mocha": true,
+      "node": true
+    }
+  }
 }

@@ -8,9 +8,13 @@
     "lodash": "^3.10.1",
     "trailpack": "0.0.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^1.10.3",
+    "eslint-config-trails": "0.0.9",
+    "mocha": "^2.3.4"
+  },
   "scripts": {
-    "test": "mocha"
+    "test": "eslint . && mocha"
   },
   "repository": {
     "type": "git",
@@ -29,10 +33,6 @@
   },
   "homepage": "https://github.com/trailsjs/trailpack-router#readme",
   "eslintConfig": {
-    "env": {
-      "es6": true,
-      "mocha": true,
-      "node": true
-    }
+    "extends": "trails"
   }
 }

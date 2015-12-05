@@ -19,4 +19,4 @@ deploy:
   on:
     tags: true
     repo: trailsjs/trailpack-router
-    all_branches: true
+    node: 'stable'

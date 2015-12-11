@@ -6,31 +6,17 @@
  */
 module.exports = {
 
-  pkg: require('../package'),
-
   /**
    * Define the API resources are provided by this trailpack
    */
   provides: {
-    app: [
-      'routes'
-    ],
     controllers: [
       'FootprintController'
     ],
     config: [
       'footprints',
       'server'
-    ],
-    models: false,
-    policies: false
-  },
-
-  /**
-   * Define the API resources modified/extended by this trailpack
-   */
-  modifies: {
-
+    ]
   }
 
 }

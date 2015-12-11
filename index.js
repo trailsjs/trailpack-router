@@ -17,10 +17,6 @@ const lib = require('./lib')
  */
 module.exports = class Router extends Trailpack {
 
-  constructor (app, config) {
-    super(app, require('./config'), require('./api'))
-  }
-
   validate () {
     return Promise.all(this.app.config.routes, lib.Validator.validateRoute)
   }
@@ -29,8 +25,6 @@ module.exports = class Router extends Trailpack {
     this.models = _.mapKeys(_.omit(this.app.api.models, 'inspect'), (model, modelName) => {
       return modelName.toLowerCase()
     })
-
-    return Promise.resolve()
   }
 
   /**
@@ -62,14 +56,19 @@ module.exports = class Router extends Trailpack {
    *    @see http://hapijs.com/api#route-prerequisites
    */
   initialize () {
-    const footprintRoutes = lib.RouteBuilder.buildFootprintRoutes(this.config, this.app.api)
-    const allRoutes = lib.RouteBuilder.buildCustomRoutes(this.config, footprintRoutes)
-    const completedRoutes = lib.RouteBuilder.buildRoutesWithPrerequisites(this.config, this.app.api, allRoutes)
+    const footprintRoutes = lib.RouteBuilder.buildFootprintRoutes(this.app.config, this.app.api)
+    const allRoutes = lib.RouteBuilder.buildCustomRoutes(this.app.config, footprintRoutes)
+    const completedRoutes = lib.RouteBuilder.buildRoutesWithPrerequisites(this.app.config, this.app.api, allRoutes)
 
     this.app.routes = completedRoutes
+  }
 
-
-
-    return Promise.resolve()
+  constructor (app) {
+    super(app, {
+      config: require('./config'),
+      api: require('./api'),
+      pkg: require('./package')
+    })
   }
 }
+

@@ -8,13 +8,8 @@ module.exports = {
       },
       find: {
         method: 'GET',
-        path: '/{model}',
+        path: '/{model}/{id?}',
         handler: 'FootprintController.find'
-      },
-      findOne: {
-        method: 'GET',
-        path: '/{model}/{id}',
-        handler: 'FootprintController.findOne'
       },
       update: {
         method: [ 'PUT', 'PATCH' ],

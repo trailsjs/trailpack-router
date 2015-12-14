@@ -47,8 +47,7 @@ module.exports = class Router extends Trailpack {
    *    Operation | Method | Path         | ORM Action
    *    ----------+--------+--------------+------------
    *    Create    | POST   | /model       | .create
-   *    Read      | GET    | /model       | .find
-   *    Read      | GET    | /model/{id}  | .findOne
+   *    Read      | GET    | /model/{id?} | .find
    *    Update    | PUT    | /model/{id?} | .update
    *    Delete    | DELETE | /model/{id?} | .destroy
    *

@@ -4,6 +4,7 @@
   "description": "Trailpack Router",
   "main": "index.js",
   "dependencies": {
+    "hoek": "^3.0.4",
     "joi": "^7.0.0",
     "lodash": "^3.10.1",
     "trailpack": "latest"

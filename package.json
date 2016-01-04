@@ -6,12 +6,15 @@
   "dependencies": {
     "joi": "^7.0.0",
     "lodash": "^3.10.1",
-    "trailpack": "latest"
+    "trailpack": "0.0.17"
   },
   "devDependencies": {
-    "eslint": "^1.10.3",
-    "eslint-config-trails": "latest",
-    "mocha": "^2.3.4"
+    "eslint": "^2.0.0-alpha-2",
+    "eslint-config-trails": "^1.0.1",
+    "mocha": "^2.3.4",
+    "smokesignals": "0.0.8",
+    "trailpack-core": "0.0.13",
+    "trails": "0.0.18"
   },
   "scripts": {
     "test": "eslint . && mocha"

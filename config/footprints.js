@@ -23,22 +23,22 @@ module.exports = {
       },
       createAssociation: {
         method: 'POST',
-        path: '/{parentModel}/{parentId}/{childModel}',
+        path: '/{parentModel}/{parentId}/{childAttribute}',
         handler: 'FootprintController.createAssociation'
       },
       findAssociation: {
         method: 'GET',
-        path: '/{parentModel}/{parentId}/{childModel}',
+        path: '/{parentModel}/{parentId}/{childAttribute}',
         handler: 'FootprintController.findAssociation'
       },
       updateAssociation: {
         method: 'PUT',
-        path: '/{parentModel}/{parentId}/{childModel}/{childId?}',
+        path: '/{parentModel}/{parentId}/{childAttribute}/{childId?}',
         handler: 'FootprintController.updateAssociation'
       },
       destroyAssociation: {
         method: 'DELETE',
-        path: '/{parentModel}/{parentId}/{childModel}/{childId?}',
+        path: '/{parentModel}/{parentId}/{childAttribute}/{childId?}',
         handler: 'FootprintController.destroyAssociation'
       }
     }

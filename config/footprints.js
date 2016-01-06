@@ -28,7 +28,7 @@ module.exports = {
       },
       findAssociation: {
         method: 'GET',
-        path: '/{parentModel}/{parentId}/{childAttribute}',
+        path: '/{parentModel}/{parentId}/{childAttribute}/{childId?}',
         handler: 'FootprintController.findAssociation'
       },
       updateAssociation: {

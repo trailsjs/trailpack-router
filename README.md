@@ -24,7 +24,7 @@ module.exports = {
 
 ## Compatible Trailpacks
 - [trailpack-hapi](https://github.com/trailsjs/trailpack-hapi)
-- [trailpack-express4](https://github.com/trailsjs/trailpack-express4) (TODO)
+- [trailpack-express4](https://github.com/trailsjs/trailpack-express4) (In Progress)
 - [trailpack-koa](https://github.com/trailsjs/trailpack-koa) (TODO)
 
 ## Contributing

@@ -22,7 +22,7 @@ module.exports = class Router extends Trailpack {
   }
 
   configure () {
-    this.models = _.mapKeys(_.omit(this.app.api.models, 'inspect'), (model, modelName) => {
+    this.models = _.mapKeys(this.app.api.models), (model, modelName) => {
       return modelName.toLowerCase()
     })
   }

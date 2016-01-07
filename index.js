@@ -22,6 +22,10 @@ module.exports = class Router extends Trailpack {
   }
 
   configure () {
+    this.app.config.routes = lib.Transformer.mergeTrailpackRoutes(
+      _.pluck(this.app.packs, 'config.routes') || [ ],
+      this.app.config.routes || [ ]
+    )
     this.models = _.mapKeys(this.app.api.models, (model, modelName) => {
       return modelName.toLowerCase()
     })

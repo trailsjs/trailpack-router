@@ -4,7 +4,7 @@
   "description": "Trailpack Router",
   "main": "index.js",
   "dependencies": {
-    "joi": "^7.0.0",
+    "joi": "^7.1.0",
     "lodash": "^3.10.1",
     "trailpack": "0.0.17"
   },
@@ -13,8 +13,8 @@
     "eslint-config-trails": "^1.0.1",
     "mocha": "^2.3.4",
     "smokesignals": "0.0.8",
-    "trailpack-core": "0.0.14",
-    "trails": "0.0.18"
+    "trailpack-core": "0.0.16",
+    "trails": "0.0.22"
   },
   "scripts": {
     "test": "eslint . && mocha"
@@ -26,10 +26,17 @@
   "keywords": [
     "trailsjs",
     "trails",
+    "trailpack",
     "router",
-    "sails"
+    "hapi"
   ],
-  "author": "Travis Webb <me@traviswebb.com>",
+  "author": "Trails.js Team <hello@trailsjs.io>",
+  "contributors": [
+    {
+      "name": "Travis Webb",
+      "url": "https://github.com/tjwebb"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/trailsjs/trailpack-router/issues"

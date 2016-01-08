@@ -1,7 +1,7 @@
 const assert = require('assert')
 const lib = require('../../lib')
 
-describe('lib.Transformer', () => {
+describe('lib.RouteBuilder', () => {
   const testRoutesA = [
     {
       method: [ 'GET' ],
@@ -38,7 +38,7 @@ describe('lib.Transformer', () => {
   ]
   describe('#mergeTrailpackRoutes', () => {
     it('should remove duplicates', () => {
-      const mergedRoutes = lib.Transformer.mergeTrailpackRoutes(testRoutesA, testRoutesB)
+      const mergedRoutes = lib.RouteBuilder.mergeTrailpackRoutes(testRoutesA, testRoutesB)
       assert.equal(mergedRoutes.length, 5)
     })
   })

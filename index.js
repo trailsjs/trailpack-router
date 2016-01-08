@@ -22,7 +22,7 @@ module.exports = class Router extends Trailpack {
   }
 
   configure () {
-    this.app.config.routes = lib.Transformer.mergeTrailpackRoutes(
+    this.app.config.routes = lib.RouteBuilder.mergeTrailpackRoutes(
       _.pluck(this.app.packs, 'config.routes') || [ ],
       this.app.config.routes || [ ]
     )

@@ -34,9 +34,6 @@ module.exports = _.defaultsDeep({
         require('trailpack-core'),
         require('../') // trailpack-router
       ]
-    },
-    i18n: {
-      lng: 'en'
     }
   }
 }, smokesignals.FailsafeConfig)

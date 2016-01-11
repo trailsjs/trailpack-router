@@ -14,7 +14,9 @@
     "mocha": "^2.3.4",
     "smokesignals": "0.0.8",
     "trailpack-core": "0.0.20",
-    "trails": "0.0.22"
+    "trails": "0.0.22",
+    "trails-controller": "^1.0.0-alpha-1",
+    "trails-model": "^1.0.0-alpha-1"
   },
   "scripts": {
     "test": "eslint . && mocha"

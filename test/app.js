@@ -2,6 +2,8 @@
 
 const _ = require('lodash')
 const smokesignals = require('smokesignals')
+const Model = require('trails-model')
+const Controller = require('trails-controller')
 
 module.exports = _.defaultsDeep({
   pkg: {
@@ -9,27 +11,35 @@ module.exports = _.defaultsDeep({
   },
   api: {
     models: {
-      User: {
-        attributes: {
-          name: 'string',
-          roles: {
-            collection: 'Role',
-            via: 'user'
+      User: class User extends Model {
+        static schema () {
+          return {
+            name: 'string',
+            roles: {
+              collection: 'Role',
+              via: 'user'
+            }
           }
         }
       },
-      Role: {
-        store: 'storeoverride',
-        attributes: {
-          name: 'string',
-          user: {
-            model: 'User'
+      Role: class Role extends Model {
+        static config () {
+          return {
+            store: 'storeoverride'
+          }
+        }
+        static schema () {
+          return {
+            name: 'string',
+            user: {
+              model: 'User'
+            }
           }
         }
       }
     },
     controllers: {
-      ClassController: class ClassController {
+      ClassController: class ClassController extends Controller {
         handlerA () {
           return 1
         }

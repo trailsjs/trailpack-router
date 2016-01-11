@@ -59,9 +59,9 @@ module.exports = class Router extends Trailpack {
    *    @see http://hapijs.com/api#route-prerequisites
    */
   initialize () {
-    const footprintRoutes = lib.RouteBuilder.buildFootprintRoutes(this.app.config, this.app.api)
-    const allRoutes = lib.RouteBuilder.buildCustomRoutes(this.app.config, footprintRoutes)
-    const completedRoutes = lib.RouteBuilder.buildRoutesWithPrerequisites(this.app.config, this.app.api, allRoutes)
+    const footprintRoutes = lib.RouteBuilder.buildFootprintRoutes(this.app)
+    const allRoutes = lib.RouteBuilder.buildCustomRoutes(this.app, footprintRoutes)
+    const completedRoutes = lib.RouteBuilder.buildRoutesWithPrerequisites(this.app, allRoutes)
 
     this.app.routes = completedRoutes
   }

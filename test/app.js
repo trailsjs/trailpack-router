@@ -1,3 +1,5 @@
+'use strict'
+
 const _ = require('lodash')
 const smokesignals = require('smokesignals')
 
@@ -25,6 +27,16 @@ module.exports = _.defaultsDeep({
           }
         }
       }
+    },
+    controllers: {
+      ClassController: class ClassController {
+        handlerA () {
+          return 1
+        }
+        handlerB () {
+          return 2
+        }
+      }
     }
   },
   config: {
@@ -34,6 +46,9 @@ module.exports = _.defaultsDeep({
         require('trailpack-core'),
         require('../') // trailpack-router
       ]
+    },
+    footprints: {
+      controllers: true
     }
   }
 }, smokesignals.FailsafeConfig)

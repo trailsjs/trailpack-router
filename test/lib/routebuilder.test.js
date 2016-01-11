@@ -1,3 +1,6 @@
+'use strict'
+
+const _ = require('lodash')
 const assert = require('assert')
 const lib = require('../../lib')
 
@@ -40,6 +43,12 @@ describe('lib.RouteBuilder', () => {
     it('should remove duplicates', () => {
       const mergedRoutes = lib.RouteBuilder.mergeTrailpackRoutes(testRoutesA, testRoutesB)
       assert.equal(mergedRoutes.length, 5)
+    })
+  })
+  describe('#getControllerHandlers', () => {
+    it('should compile handlers if controller is a ES6 class', () => {
+      assert(_.find(global.app.routes, { handler: 'ClassController.handlerA' }))
+      assert(_.find(global.app.routes, { handler: 'ClassController.handlerB' }))
     })
   })
 })

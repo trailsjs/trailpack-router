@@ -3,6 +3,7 @@
 const _ = require('lodash')
 const assert = require('assert')
 const lib = require('../../lib')
+const app = require('./../app')
 
 describe('lib.RouteBuilder', () => {
   const testRoutesA = [
@@ -46,6 +47,11 @@ describe('lib.RouteBuilder', () => {
     })
   })
   describe('#getControllerHandlers', () => {
+    it('should compile controllers into temporary "internal" route objects', () => {
+      const handlers = lib.RouteBuilder.getControllerHandlers(global.app.controllers)
+
+      assert.equal(handlers.length, 2)
+    })
     it('should compile handlers if controller is a ES6 class', () => {
       assert(_.find(global.app.routes, { handler: 'ClassController.handlerA' }))
       assert(_.find(global.app.routes, { handler: 'ClassController.handlerB' }))

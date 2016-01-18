@@ -3,7 +3,6 @@
 const _ = require('lodash')
 const assert = require('assert')
 const lib = require('../../lib')
-const app = require('./../app')
 
 describe('lib.RouteBuilder', () => {
   const testRoutesA = [

@@ -14,7 +14,7 @@ Policies) into [hapi.js route objects](http://hapijs.com/api#route-configuration
 Load from your trailpack config. (This pack is included by default).
 
 ```js
-// config/trailpack.js
+// config/main.js
 module.exports = {
   // ...
   packs: [

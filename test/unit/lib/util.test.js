@@ -114,18 +114,18 @@ describe('lib.util', () => {
     ]
 
     it('should attach controller-wide policies to all handlers in Controller', () => {
-      let pre = lib.Util.getRoutePrerequisites(policies, routes[0])
+      const pre = lib.Util.getRoutePrerequisites(policies, routes[0])
       assert(_.includes(pre, 'FooPolicy.foo'))
       assert(_.includes(pre, 'FooPolicy.bar'))
       assert.equal(pre.length, 2)
     })
     it('should attach handler-specific policies to the corresponding handler in Controller', () => {
-      let pre = lib.Util.getRoutePrerequisites(policies, routes[1])
+      const pre = lib.Util.getRoutePrerequisites(policies, routes[1])
       assert(_.includes(pre, 'BarPolicy.test'))
       assert.equal(pre.length, 1)
     })
     it('should attach no policies to handler which does not match any policy config', () => {
-      let pre = lib.Util.getRoutePrerequisites(policies, routes[2])
+      const pre = lib.Util.getRoutePrerequisites(policies, routes[2])
       assert.equal(pre.length, 0)
     })
   })
@@ -156,7 +156,7 @@ describe('lib.util', () => {
     ]
 
     it('should decorate route with preconditions', () => {
-      let route = lib.Util.decorateRouteWithPrerequisites(policies, routes[0])
+      const route = lib.Util.decorateRouteWithPrerequisites(policies, routes[0])
 
       assert(_.isObject(route.config))
       assert(_.isArray(route.config.pre))

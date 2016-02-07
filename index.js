@@ -21,49 +21,16 @@ module.exports = class Router extends Trailpack {
     return Promise.all(_.map(this.app.config.routes, lib.Validator.validateRoute))
   }
 
-  configure () {
-    this.app.config.routes = lib.RouteBuilder.mergeTrailpackRoutes(
-      _.map(this.app.packs, 'config.routes') || [ ],
-      this.app.config.routes || [ ]
-    )
-    this.models = _.mapKeys(this.app.api.models, (model, modelName) => {
-      return modelName.toLowerCase()
-    })
-  }
-
   /**
-   * Merge route configuration and store in app.routes. Trailpacks that wish to
-   * extend/add new routes should do so in the configure() lifecycle method.
-   *
-   * 1. ETL controller handlers into the standard route format.
-   *    api.controllers.handlers  --> (map)
-   *                              --> [ { controllerId, controllerName, handlerName } ]
-   *                              --> (map)
-   *                              --> [ { id, method, path, handler } ]
-   *               config.routes  --> (group by path + handler)
-   *                              --> { routeId: [ { id, method, path, handler } ] }
-   *               config.routes  --> (merge each route group)
-   *                              --> [ { id, method, path, handler } ]
-   *                              --> app.routes
-   *
-   * 2. Create CRUD Route definition which maps to api.controllers.FootprintController
-   *
-   *    Operation | Method | Path         | ORM Action
-   *    ----------+--------+--------------+------------
-   *    Create    | POST   | /model       | .create
-   *    Read      | GET    | /model/{id?} | .find
-   *    Update    | PUT    | /model/{id?} | .update
-   *    Delete    | DELETE | /model/{id?} | .destroy
-   *
-   * 3. Attach Policies as prerequisites.
-   *    @see http://hapijs.com/api#route-prerequisites
+   * Compile route configuration and store in app.routes. Trailpacks that wish
+   * to extend/add new routes should do so either in their configure() lifecycle
+   * method, or by creating a config.routes list -- this list will be
+   * automatically merged into the application's config.routes list.
    */
   initialize () {
-    const footprintRoutes = lib.RouteBuilder.buildFootprintRoutes(this.app)
-    const allRoutes = lib.RouteBuilder.buildCustomRoutes(this.app, footprintRoutes)
-    const completedRoutes = lib.RouteBuilder.buildRoutesWithPrerequisites(this.app, allRoutes)
-
-    this.app.routes = completedRoutes
+    this.app.routes = _.map(this.app.config.routes, route => {
+      return lib.Util.decorateRouteWithPrerequisites(this.app.config.policies, route)
+    })
   }
 
   constructor (app) {

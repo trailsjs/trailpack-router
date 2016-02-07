@@ -30,12 +30,8 @@ module.exports = {
 - [trailpack-koa](https://github.com/trailsjs/trailpack-koa) (TODO)
 
 ## Contributing
-We love contributions! In order to be able to review your code efficiently,
-please keep the following in mind:
-
-1. Pull Requests (PRs) must include new and/or updated tests, and all tests [must pass](https://travis-ci.org/trailsjs/trailpack-router).
-2. Follow the `eslintConfig` in [package.json](https://github.com/trailsjs/trailpack-router/blob/master/package.json).
-3. Please [reference the relevant issue](https://github.com/blog/1506-closing-issues-via-pull-requests) in your Pull Request.
+We love contributions! Please see our [Contribution Guide](https://github.com/trailsjs/trails/blob/master/CONTRIBUTING.md)
+for more information.
 
 ## License
 [MIT](https://github.com/trailsjs/trailpack-router/blob/master/LICENSE)

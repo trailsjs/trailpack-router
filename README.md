@@ -7,8 +7,8 @@
 [![Code Climate][codeclimate-image]][codeclimate-url]
 [![Follow @trailsjs on Twitter][twitter-image]][twitter-url]
 
-Trailpack Router. Validates and Compiles all API endpoints (Controllers,
-Policies) into [hapi.js route objects](http://hapijs.com/api#route-configuration).
+Trailpack Router. Aggregates all routes from `config.routes` and attaches
+prerequisites (Policies) to form [hapi.js route objects](http://hapijs.com/api#route-configuration).
 
 ## Usage
 Load from your trailpack config. (This pack is included by default).
@@ -22,6 +22,49 @@ module.exports = {
     require('trailpack-router')
   ]
 }
+```
+
+## Configure
+
+#### `config.policies`
+The policies configuration maps controller handlers to a list of policies
+which must pass before the handler is invoked.
+
+```js
+// config/policies.js
+module.exports = {
+  ExampleController: {
+    test: [ 'ExamplePolicy.test' ]
+  }
+}
+```
+
+#### `config.routes`
+The list of route objects to be compiled for use by the webserver.
+
+```js
+// config/routes.js
+module.exports = [
+  {
+    method: [ 'GET' ],
+    path: '/example/test',
+    handler: 'ExampleController.test'
+  }
+]
+```
+
+During initialization, for the above example, a route object will be compiled
+that takes the following form:
+
+```js
+  {
+    method: [ 'GET' ],
+    path: '/example/test',
+    handler: 'ExampleController.test',
+    config: {
+      pre: [ 'ExamplePolicy.test' ]
+    }
+  }
 ```
 
 ## Compatible Trailpacks

@@ -40,5 +40,12 @@ module.exports = class Router extends Trailpack {
       pkg: require('./package')
     })
   }
+
+  /**
+   * Expose the "util" module on the public API
+   */
+  get util () {
+    return lib.Util
+  }
 }
 

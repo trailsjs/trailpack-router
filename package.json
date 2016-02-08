@@ -16,7 +16,8 @@
     "trailpack-core": "1.0.0-alpha-2",
     "trails": "1.0.0-alpha-4",
     "trails-controller": "^1.0.0-alpha-1",
-    "trails-model": "^1.0.0-alpha-1"
+    "trails-model": "^1.0.0-alpha-1",
+    "trails-policy": "^1.0.0"
   },
   "scripts": {
     "test": "eslint . && mocha"

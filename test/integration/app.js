@@ -2,10 +2,30 @@
 
 const _ = require('lodash')
 const smokesignals = require('smokesignals')
+const Controller = require('trails-controller')
+const Policy = require('trails-policy')
 
 module.exports = _.defaultsDeep({
   pkg: {
     name: 'router-trailpack-test'
+  },
+  api: {
+    controllers: {
+      TestController: class TestController extends Controller {
+        foo () { }
+      },
+      HomeController: class HomeController extends Controller {
+        index () { }
+      },
+      FooController: class FooController extends Controller {
+        bar () { }
+      }
+    },
+    policies: {
+      FooPolicy: class FooPolicy extends Policy {
+        bar () { }
+      }
+    }
   },
   config: {
     main: {
@@ -33,7 +53,9 @@ module.exports = _.defaultsDeep({
       }
     ],
     policies: {
-
+      FooController: {
+        bar: [ 'FooPolicy.bar' ]
+      }
     }
   }
 }, smokesignals.FailsafeConfig)

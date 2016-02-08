@@ -10,9 +10,10 @@ describe('Router Trailpack', () => {
       const routes = global.app.routes
       assert(_.isArray(routes))
 
-      assert(_.find(routes, { handler: 'TestController.foo' }))
-      assert(_.find(routes, { handler: 'HomeController.index' }))
-      assert(_.find(routes, { handler: 'FooController.bar' }))
+      assert.equal(routes.length, 3)
+      assert(_.isFunction(routes[0].handler))
+      assert(_.isFunction(routes[1].handler))
+      assert(_.isFunction(routes[2].handler))
     })
   })
 })

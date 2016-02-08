@@ -130,39 +130,5 @@ describe('lib.util', () => {
     })
   })
 
-  describe('#decorateRouteWithPrerequisites', () => {
-    const policies = {
-      FooController: [ 'FooPolicy.foo', 'FooPolicy.bar' ],
-      BarController: {
-        testHandler: [ 'BarPolicy.test' ]
-      }
-    }
-    const routes = [
-      {
-        method: 'GET',
-        path: '/foo/foo',
-        handler: 'FooController.fooHandler'
-      },
-      {
-        method: '*',
-        path: '/bar/test',
-        handler: 'BarController.testHandler'
-      },
-      {
-        method: [ 'GET', 'POST' ],
-        path: '/bar/foo',
-        handler: 'BarController.fooHandler'
-      }
-    ]
-
-    it('should decorate route with preconditions', () => {
-      const route = lib.Util.decorateRouteWithPrerequisites(policies, routes[0])
-
-      assert(_.isObject(route.config))
-      assert(_.isArray(route.config.pre))
-      assert(_.find(route.config.pre, { method: 'FooPolicy.foo' }))
-      assert(_.find(route.config.pre, { method: 'FooPolicy.bar' }))
-    })
-  })
 })
 

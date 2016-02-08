@@ -28,9 +28,7 @@ module.exports = class Router extends Trailpack {
    * automatically merged into the application's config.routes list.
    */
   initialize () {
-    this.app.routes = _.map(this.app.config.routes, route => {
-      return lib.Util.decorateRouteWithPrerequisites(this.app.config.policies, route)
-    })
+    this.app.routes = _.map(this.app.config.routes, route => lib.Util.buildRoute(this.app, route))
   }
 
   constructor (app) {

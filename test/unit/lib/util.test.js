@@ -206,6 +206,39 @@ describe('lib.util', () => {
     })
   })
 
+  describe('#findRouteHandlerConflicts', () => {
+    const handlerA = function () { }
+    const handlerB = function () { }
+    const handlerC = function () { }
+    const routesList = [
+      { method: '*', path: '/a', handler: handlerA },
+      { method: 'GET', path: '/b', handler: handlerB },
+      { method: [ 'GET' ], path: '/b', handler: handlerB },
+      { method: [ 'GET', 'POST' ], path: '/c', handler: handlerC },
+      { method: [ 'GET', 'POST', 'PUT' ], path: '/c', handler: handlerC }
+    ]
+    it('should detect conflict when path and handler are identical', () => {
+      const route = {
+        method: '*',
+        path: '/a',
+        handler: handlerA
+      }
+      const conflicts = lib.Util.findRouteHandlerConflicts(route, routesList)
+
+      assert.equal(conflicts.length, 1)
+    })
+    it('should not detect conflict when path and handler are different', () => {
+      const route = {
+        method: '*',
+        path: '/a',
+        handler: handlerB
+      }
+      const conflicts = lib.Util.findRouteHandlerConflicts(route, routesList)
+
+      assert.equal(conflicts.length, 0)
+    })
+  })
+
   describe('#mergeRoutes', () => {
   })
 })

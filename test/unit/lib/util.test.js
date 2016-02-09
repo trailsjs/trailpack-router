@@ -130,5 +130,83 @@ describe('lib.util', () => {
     })
   })
 
+  describe('#findRoutePathConflicts', () => {
+    const handlerA = function () { }
+    const handlerB = function () { }
+    const handlerC = function () { }
+    const routesList = [
+      { method: '*', path: '/a', handler: handlerA },
+      { method: 'GET', path: '/b', handler: handlerB },
+      { method: [ 'GET' ], path: '/b', handler: handlerB },
+      { method: [ 'GET', 'POST' ], path: '/c', handler: handlerC },
+      { method: [ 'GET', 'POST', 'PUT' ], path: '/c', handler: handlerC }
+    ]
+    it('should detect conflict if methods are identical', () => {
+      const route = {
+        method: '*',
+        path: '/a'
+      }
+      const conflicts = lib.Util.findRoutePathConflicts(route, routesList)
+
+      assert.equal(conflicts.length, 1)
+    })
+    it('should detect confilict if methods overlap (non-array)', () => {
+      const route = {
+        method: 'GET',
+        path: '/b'
+      }
+      const conflicts = lib.Util.findRoutePathConflicts(route, routesList)
+
+      assert.equal(conflicts.length, 2)
+    })
+    it('should detect confilict if methods overlap (array)', () => {
+      const route = {
+        method: [ 'GET' ],
+        path: '/b'
+      }
+      const conflicts = lib.Util.findRoutePathConflicts(route, routesList)
+
+      assert.equal(conflicts.length, 2)
+    })
+    it('should detect confilict if methods overlap (subset)', () => {
+      const route = {
+        method: [ 'GET', 'POST' ],
+        path: '/c'
+      }
+      const conflicts = lib.Util.findRoutePathConflicts(route, routesList)
+
+      assert.equal(conflicts.length, 2)
+    })
+    it('should detect confilict if methods overlap (superset)', () => {
+      const route = {
+        method: [ 'GET', 'POST', 'PUT' ],
+        path: '/c'
+      }
+      const conflicts = lib.Util.findRoutePathConflicts(route, routesList)
+
+      assert.equal(conflicts.length, 2)
+    })
+    it('should not detect confilict if there exists none (matching path)', () => {
+      const route = {
+        method: 'PATCH',
+        path: '/c'
+      }
+      const conflicts = lib.Util.findRoutePathConflicts(route, routesList)
+
+      assert.equal(conflicts.length, 0)
+    })
+    it('should not detect confilict if there exists none (matching path (method array))', () => {
+      const route = {
+        method: [ 'PATCH' ],
+        path: '/c'
+      }
+      const conflicts = lib.Util.findRoutePathConflicts(route, routesList)
+
+      assert.equal(conflicts.length, 0)
+    })
+  })
+
+  describe('#mergeRoutes', () => {
+  })
 })
 

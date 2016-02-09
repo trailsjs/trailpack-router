@@ -4,6 +4,7 @@
   "description": "Trailpack Router",
   "main": "index.js",
   "dependencies": {
+    "call": "^3.0.0",
     "joi": "^7.1.0",
     "lodash": "^4.2.1",
     "trailpack": "1.0.0-beta-2"
@@ -11,6 +12,7 @@
   "devDependencies": {
     "eslint": "^2.0.0-alpha-2",
     "eslint-config-trails": "^1.0.1",
+    "hapi": "^13.0.0",
     "mocha": "^2.3.4",
     "smokesignals": "^1.0.0",
     "trailpack-core": "1.0.0-alpha-2",

@@ -3,6 +3,7 @@
 const assert = require('assert')
 const lib = require('../../../lib')
 const _ = require('lodash')
+const hapi = require('hapi')
 
 describe('lib.util', () => {
 
@@ -240,6 +241,88 @@ describe('lib.util', () => {
   })
 
   describe('#mergeRoutes', () => {
+    const handlerA = function () { }
+    const handlerB = function () { }
+    const handlerC = function () { }
+    const originalRoutes = [
+      { method: '*', path: '/a', handler: handlerA },
+      { method: [ 'GET' ], path: '/b', handler: handlerB },
+      { method: [ 'GET', 'POST', 'PUT' ], path: '/c', handler: handlerC }
+    ]
+    const overrideRoutes = [
+      { method: '*', path: '/a', handler: handlerA },
+      { method: 'GET', path: '/b', handler: handlerB },
+      { method: [ 'GET', 'POST' ], path: '/c', handler: handlerC },
+      { method: '*', path: '/d', handler: handlerA },
+      { method: [ 'GET' ], path: '/e', handler: handlerB },
+      { method: [ 'GET', 'POST' ], path: '/f', handler: handlerC }
+    ]
+
+    it('should dedupe conflicting routes', () => {
+      const routes = lib.Util.mergeRoutes(originalRoutes, overrideRoutes)
+
+      assert.equal(routes.length, 6)
+    })
+    describe('hapijs', () => {
+      const server = new hapi.Server()
+      after(done => {
+        server.stop(done)
+      })
+      it('should produce a routes list that is valid in a hapijs server', done => {
+        const routes = lib.Util.mergeRoutes(originalRoutes, overrideRoutes)
+
+        server.connection({ port: 5000 })
+        server.route(routes)
+        server.start(done)
+      })
+    })
+  })
+
+  describe('#findRouteConflicts', () => {
+    const handler = function () { }
+
+    it('should return no results for a valid route list', () => {
+      const routeList = [
+        { method: '*', path: '/a', handler: handler },
+        { method: '*', path: '/b', handler: handler },
+        { method: '*', path: '/c', handler: handler }
+      ]
+
+      const conflicts = lib.Util.findRouteConflicts(routeList)
+      assert.equal(conflicts.length, 0)
+    })
+    it('should detect invalid route list (duplicate paths)', () => {
+      const routeList = [
+        { method: 'GET', path: '/a', handler: handler },
+        { method: 'GET', path: '/a', handler: handler }
+      ]
+
+      const conflicts = lib.Util.findRouteConflicts(routeList)
+
+      assert.equal(conflicts.length, 1)
+      assert.equal(conflicts[0].errors[0].message, 'New route /a conflicts with existing /a')
+    })
+    it('should detect multiple errors in invalid route list (duplicate paths)', () => {
+      const routeList = [
+        { method: 'GET', path: '/a', handler: handler },
+        { method: 'GET', path: '/a', handler: handler },
+        { method: 'GET', path: '/a', handler: handler }
+      ]
+
+      const conflicts = lib.Util.findRouteConflicts(routeList)
+
+      assert.equal(conflicts.length, 2)
+      assert.equal(conflicts[0].errors[0].message, 'New route /a conflicts with existing /a')
+    })
+    it('should validate non-overlapping methods for a single path', () => {
+      const routeList = [
+        { method: 'POST', path: '/a', handler: handler },
+        { method: 'GET', path: '/a', handler: handler }
+      ]
+
+      const conflicts = lib.Util.findRouteConflicts(routeList)
+      assert.equal(conflicts.length, 0)
+    })
   })
 })
 

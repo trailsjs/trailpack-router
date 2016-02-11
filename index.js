@@ -18,7 +18,10 @@ const lib = require('./lib')
 module.exports = class Router extends Trailpack {
 
   validate () {
-    return Promise.all(_.map(this.app.config.routes, lib.Validator.validateRoute))
+    return Promise.all([
+      Promise.all(_.map(this.app.config.routes, lib.Validator.validateRoute)),
+      lib.Validator.validateRouteList(this.app.config.routes)
+    ])
   }
 
   /**

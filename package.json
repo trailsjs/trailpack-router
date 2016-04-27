@@ -5,21 +5,21 @@
   "main": "index.js",
   "dependencies": {
     "call": "^3.0.0",
-    "joi": "^8.0.4",
+    "joi": "^8.0.5",
     "lodash": "^4.6.1",
-    "trailpack": "1.0.0-beta-2"
+    "trailpack": "1.0.1"
   },
   "devDependencies": {
     "eslint": "^2.5.0",
-    "eslint-config-trails": "^1.0.1",
+    "eslint-config-trails": "^1.0.4",
     "hapi": "^13.2.1",
-    "mocha": "^2.3.4",
-    "smokesignals": "^1.0.0",
-    "trailpack-core": "^1.0.0-beta-1",
-    "trails": "1.0.0-beta-1",
+    "mocha": "^2.4.5",
+    "smokesignals": "^1.0.8",
+    "trailpack-core": "^1.0.0-beta-4",
+    "trails": "1.0.0-beta-8",
     "trails-controller": "^1.0.0-beta-1",
     "trails-model": "^1.0.0-beta-1",
-    "trails-policy": "^1.0.0"
+    "trails-policy": "^1.0.1"
   },
   "scripts": {
     "test": "eslint . && mocha"

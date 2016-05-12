@@ -1,7 +1,8 @@
 language: node_js
 node_js:
-- '4'
-- stable
+- 4
+- 5
+- 6
 
 notifications:
   email: false
@@ -16,7 +17,8 @@ deploy:
   email: hello@trailsjs.io
   api_key:
     secure: R2FiTNX6t11CcHahjt3EmMMVYXUkNJYM0HxmSwMA3GKOFtWNckXwhvvaH6Ybta1uTvVAOobfB4+bYeoWaoCFOi+uvsHcGx9SyybOq217hzD31fGfob4CsbR10bnlOzRByzYfIKhvWePjr8NpQX7qbiiIWhXbh9thveorJdRGanwCJqWamaodVHkheF+qXErZtCBB6YLw53Mqs+ANNz0E1miGUUoc5b4ksHTdUtJH9b+PiND1jEhbvwEk08Q2BImIXHV0RM/I6Syq30Cz5NVcrgmS3YXC3mo93roMPtP3wphL6yTUUIcdT2aZdRtZra/v/Fkb4KW0IWBTIACHsRu4YsucOR8xSlTw3ekZdk/eXHhXrbD/wiw4vCReonj/PnuxgLmZqxozfR9Y7xp+90VrW95cvo2LU27Jtk2wvghNIa1uJb02DA2zD3GCauVtJqzhK5sqSF3lN2XxC7LD5SwBFuBUwYQgSRkBi1qdfmaeH5aixXKzqQ2HWuLqKg+TJrpGyeCXQUtm4c2NEpNBU54lu1xYW2HOG9a9pbYtmBboMHVR+P74qZ0/N/t0gzd4o2oYBUyAn8MlPG1XE3a/lD5REVXCZ0MoZAdJ1iPC0MFuoEBJhxy00GZJfvGqf/tjTOePYsalp2x1Waaqn2w29qql3ZG5e8rpPawlO6/ieiL7/RE=
+  skip_cleanup: true
   on:
     tags: true
     repo: trailsjs/trailpack-router
-    node: stable
+    node: 6

@@ -1,25 +1,25 @@
 {
   "name": "trailpack-router",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Trailpack Router",
   "main": "index.js",
   "dependencies": {
     "call": "^3.0.0",
-    "joi": "^8.0.4",
-    "lodash": "^4.6.1",
-    "trailpack": "^1.0.0"
+    "joi": "^8.1.0",
+    "lodash": "^4.12.0",
+    "trailpack": "^1.0.2"
   },
   "devDependencies": {
-    "eslint": "^2.5.0",
-    "eslint-config-trails": "^1.0.1",
-    "hapi": "^13.2.1",
-    "mocha": "^2.3.4",
-    "smokesignals": "^1.0.0",
-    "trailpack-core": "^1.0.0-beta-1",
-    "trails": "^1.0.0-beta-1",
-    "trails-controller": "^1.0.0-beta-1",
+    "eslint": "^2.10.1",
+    "eslint-config-trails": "^1.0.6",
+    "hapi": "^13.4.0",
+    "mocha": "^2.4.5",
+    "smokesignals": "^1.2.2",
+    "trailpack-core": "^1.0.0-beta-6",
+    "trails": "^1.0.0",
+    "trails-controller": "^1.0.0-beta-2",
     "trails-model": "^1.0.0-beta-1",
-    "trails-policy": "^1.0.0"
+    "trails-policy": "^1.0.2"
   },
   "bundledDependencies": [
     "call",

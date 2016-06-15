@@ -50,6 +50,15 @@ module.exports = _.defaultsDeep({
         method: '*',
         path: '/foo/bar',
         handler: 'FooController.bar'
+      },
+      {
+        method: 'GET',
+        path: '/node_modules',
+        handler: {
+          directory: {
+            path: 'node_modules'
+          }
+        }
       }
     ],
     policies: {

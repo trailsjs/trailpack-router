@@ -21,6 +21,13 @@ describe('lib.Util', () => {
 
       assert.equal(route.config.pre.length, 0)
     })
+    it('should not decorate route with object handler', () => {
+      const routes = global.app.config.routes
+      const route = lib.Util.decorateRouteWithPrerequisites(global.app, routes[3])
+
+      assert.equal(route.config.pre.length, 0)
+      assert(_.isObject(route.handler))
+    })
   })
 
   describe('#buildRoute', () => {

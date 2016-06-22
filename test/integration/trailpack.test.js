@@ -10,10 +10,11 @@ describe('Router Trailpack', () => {
       const routes = global.app.routes
       assert(_.isArray(routes))
 
-      assert.equal(routes.length, 3)
+      assert.equal(routes.length, 4)
       assert(_.isFunction(routes[0].handler))
       assert(_.isFunction(routes[1].handler))
       assert(_.isFunction(routes[2].handler))
+      assert(_.isPlainObject(routes[3].handler))
     })
   })
 })

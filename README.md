@@ -33,8 +33,14 @@ which must pass before the handler is invoked.
 ```js
 // config/policies.js
 module.exports = {
+  '*': [ 'GlobalPolicy.test' ],  // Apply GlobalPolicy.test to all handler except the ones below
   ExampleController: {
     test: [ 'ExamplePolicy.test' ]
+  },
+  Example2Controller: [ 'ExamplePolicy.test' ], // Apply ExamplePolicy.test to all handler
+  Example3Controller: {
+    '*': [ 'GlobalExample3Policy.test' ], // Apply GlobalExample3Policy.test to all handler except the ones below
+    test: [ 'OverridePolicy.test' ]
   }
 }
 ```

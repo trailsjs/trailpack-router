@@ -50,6 +50,23 @@ module.exports = _.defaultsDeep({
         method: '*',
         path: '/foo/bar',
         handler: 'FooController.bar'
+      },
+      {
+        method: 'GET',
+        path: '/node_modules',
+        handler: {
+          directory: {
+            path: 'node_modules'
+          }
+        }
+      },
+      {
+        method: 'GET',
+        path: '/test/foo/tags',
+        handler: 'TestController.foo',
+        config: {
+          tags: ['test', 'other']
+        }
       }
     ],
     policies: {
@@ -59,4 +76,3 @@ module.exports = _.defaultsDeep({
     }
   }
 }, smokesignals.FailsafeConfig)
-

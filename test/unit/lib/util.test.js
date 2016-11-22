@@ -91,9 +91,13 @@ describe('lib.util', () => {
 
   describe('#getRoutePrerequisites', () => {
     const policies = {
-      FooController: [ 'FooPolicy.foo', 'FooPolicy.bar' ],
+      FooController: ['FooPolicy.foo', 'FooPolicy.bar'],
       BarController: {
-        testHandler: [ 'BarPolicy.test' ]
+        testHandler: ['BarPolicy.test']
+      },
+      TotoController: {
+        '*': ['FooPolicy.foo', 'FooPolicy.bar'],
+        test: ['FooPolicy.foo']
       }
     }
     const routes = [
@@ -108,9 +112,24 @@ describe('lib.util', () => {
         handler: 'BarController.testHandler'
       },
       {
-        method: [ 'GET', 'POST' ],
+        method: ['GET', 'POST'],
         path: '/bar/foo',
         handler: 'BarController.fooHandler'
+      },
+      {
+        method: 'GET',
+        path: '/toto/test',
+        handler: 'TotoController.test'
+      },
+      {
+        method: 'GET',
+        path: '/toto/star',
+        handler: 'TotoController.star'
+      },
+      {
+        method: 'GET',
+        path: '/bar/star',
+        handler: 'BarController.star'
       }
     ]
 
@@ -128,6 +147,23 @@ describe('lib.util', () => {
     it('should attach no policies to handler which does not match any policy config', () => {
       const pre = lib.Util.getRoutePrerequisites(policies, routes[2])
       assert.equal(pre.length, 0)
+    })
+    it('should override star policy for TotoController', () => {
+      const pre = lib.Util.getRoutePrerequisites(policies, routes[3])
+      assert.equal(pre.length, 1)
+      assert.equal(pre[0], 'FooPolicy.foo')
+    })
+    it('should return star policies for TotoController', () => {
+      const pre = lib.Util.getRoutePrerequisites(policies, routes[4])
+      assert.equal(pre.length, 2)
+      assert.equal(pre[0], 'FooPolicy.foo')
+      assert.equal(pre[1], 'FooPolicy.bar')
+    })
+    it('should return star policy', () => {
+      const starPolicies = _.merge(policies, {'*': ['BarPolicy.test']})
+      const pre = lib.Util.getRoutePrerequisites(starPolicies, routes[5])
+      assert.equal(pre.length, 1)
+      assert.equal(pre[0], 'BarPolicy.test')
     })
   })
 

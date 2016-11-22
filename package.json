@@ -17,11 +17,6 @@
     "smokesignals": "^2",
     "trails": "^2"
   },
-  "bundledDependencies": [
-    "call",
-    "joi",
-    "lodash"
-  ],
   "scripts": {
     "test": "eslint . && mocha"
   },

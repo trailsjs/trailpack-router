@@ -11,11 +11,11 @@
   },
   "devDependencies": {
     "eslint": "^2.5.0",
-    "eslint-config-trails": "^1.0.1",
+    "eslint-config-trails": "^2",
     "hapi": "^13.2.1",
     "mocha": "^2.3.4",
     "smokesignals": "^2",
-    "trails": "v2-dev"
+    "trails": "v2-latest"
   },
   "scripts": {
     "test": "eslint . && mocha"

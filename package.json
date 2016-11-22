@@ -15,7 +15,7 @@
     "hapi": "^13.2.1",
     "mocha": "^2.3.4",
     "smokesignals": "^2",
-    "trails": "^2"
+    "trails": "v2-dev"
   },
   "scripts": {
     "test": "eslint . && mocha"

@@ -46,5 +46,8 @@
   "homepage": "https://github.com/trailsjs/trailpack-router#readme",
   "eslintConfig": {
     "extends": "trails"
+  },
+  "publishConfig": {
+    "tag": "next"
   }
 }

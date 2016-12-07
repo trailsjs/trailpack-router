@@ -5,16 +5,16 @@
   "main": "index.js",
   "dependencies": {
     "call": "^3.0.0",
-    "joi": "^8.0.4",
+    "joi": "^10.0.5",
     "lodash": "^4.6.1",
-    "trailpack": "^2"
+    "trailpack": "v2-latest"
   },
   "devDependencies": {
     "eslint": "^2.5.0",
     "eslint-config-trails": "^2",
     "hapi": "^13.2.1",
     "mocha": "^2.3.4",
-    "smokesignals": "^2",
+    "smokesignals": "v2-latest",
     "trails": "v2-latest"
   },
   "scripts": {

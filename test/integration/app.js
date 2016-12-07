@@ -2,8 +2,8 @@
 
 const _ = require('lodash')
 const smokesignals = require('smokesignals')
-const Controller = require('trails-controller')
-const Policy = require('trails-policy')
+const Controller = require('trails/controller')
+const Policy = require('trails/policy')
 
 module.exports = _.defaultsDeep({
   pkg: {

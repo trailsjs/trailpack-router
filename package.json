@@ -1,6 +1,6 @@
 {
   "name": "trailpack-router",
-  "version": "2.0.0-rc2",
+  "version": "2.0.0",
   "description": "Trailpack Router",
   "main": "index.js",
   "dependencies": {

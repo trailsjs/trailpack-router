@@ -7,7 +7,7 @@
     "call": "^3.0.0",
     "joi": "^10.0.5",
     "lodash": "^4.6.1",
-    "trailpack": "v2-latest"
+    "trailpack": "3.0.0-pre.2"
   },
   "devDependencies": {
     "eslint": "^2.5.0",

@@ -10,12 +10,12 @@
     "trailpack": "3.0.0-pre.2"
   },
   "devDependencies": {
-    "eslint": "^2.5.0",
-    "eslint-config-trails": "^2",
+    "eslint": "^3",
+    "eslint-config-trails": "^3",
     "hapi": "^13.2.1",
-    "mocha": "^2.3.4",
-    "smokesignals": "v2-latest",
-    "trails": "v2-latest"
+    "mocha": "^3.2",
+    "smokesignals": "latest",
+    "trails": "latest"
   },
   "scripts": {
     "test": "eslint . && mocha"
@@ -46,8 +46,5 @@
   "homepage": "https://github.com/trailsjs/trailpack-router#readme",
   "eslintConfig": {
     "extends": "trails"
-  },
-  "publishConfig": {
-    "tag": "next"
   }
 }

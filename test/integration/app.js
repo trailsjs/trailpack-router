@@ -1,5 +1,3 @@
-'use strict'
-
 const _ = require('lodash')
 const smokesignals = require('smokesignals')
 const Controller = require('trails/controller')

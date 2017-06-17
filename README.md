@@ -18,7 +18,6 @@ Load from your trailpack config. (This pack is included by default).
 module.exports = {
   // ...
   packs: [
-    require('trailpack-core'),
     require('trailpack-router')
   ]
 }

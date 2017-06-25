@@ -1,24 +1,24 @@
 {
   "name": "trailpack-router",
-  "version": "2.1.1",
+  "version": "3.1.0",
   "description": "Trailpack Router",
   "main": "index.js",
   "dependencies": {
-    "call": "^3.0.0",
-    "joi": "^10.0.5",
-    "lodash": "^4.6.1",
-    "trailpack": "v2-latest"
+    "joi": "^10.5",
+    "lodash.get": "^4.4.2",
+    "trailpack": "3.0.0-pre.2"
   },
   "devDependencies": {
-    "eslint": "^3.15.0",
-    "eslint-config-trails": "^2",
-    "hapi": "^13.2.1",
-    "mocha": "^2.3.4",
-    "smokesignals": "v2-latest",
-    "trails": "v2-latest"
+    "eslint": "^3",
+    "eslint-config-trails": "^3",
+    "hapi": "^16",
+    "mocha": "^3.4",
+    "nyc": "^11.0.2",
+    "smokesignals": "^3",
+    "trails": "next"
   },
   "scripts": {
-    "test": "eslint . && mocha"
+    "test": "eslint . && nyc mocha"
   },
   "repository": {
     "type": "git",
@@ -46,8 +46,5 @@
   "homepage": "https://github.com/trailsjs/trailpack-router#readme",
   "eslintConfig": {
     "extends": "trails"
-  },
-  "publishConfig": {
-    "tag": "next"
   }
 }

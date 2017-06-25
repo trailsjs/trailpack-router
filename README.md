@@ -1,5 +1,6 @@
 # trailpack-router
 
+
 [![Gitter][gitter-image]][gitter-url]
 [![NPM version][npm-image]][npm-url]
 [![Build status][ci-image]][ci-url]
@@ -7,8 +8,7 @@
 [![Code Climate][codeclimate-image]][codeclimate-url]
 [![Follow @trailsjs on Twitter][twitter-image]][twitter-url]
 
-Trailpack Router. Aggregates all routes from `config.routes` and attaches
-prerequisites (Policies) to form [hapi.js route objects](http://hapijs.com/api#route-configuration).
+Trailpack Router. Aggregates all routes from `config.routes` to create [hapi.js route objects](http://hapijs.com/api#route-configuration).
 
 ## Usage
 Load from your trailpack config. (This pack is included by default).
@@ -18,32 +18,12 @@ Load from your trailpack config. (This pack is included by default).
 module.exports = {
   // ...
   packs: [
-    require('trailpack-core'),
     require('trailpack-router')
   ]
 }
 ```
 
 ## Configure
-
-#### `config.policies`
-The policies configuration maps controller handlers to a list of policies
-which must pass before the handler is invoked.
-
-```js
-// config/policies.js
-module.exports = {
-  '*': [ 'GlobalPolicy.test' ],  // Apply GlobalPolicy.test to all handler except the ones below
-  ExampleController: {
-    test: [ 'ExamplePolicy.test' ]
-  },
-  Example2Controller: [ 'ExamplePolicy.test' ], // Apply ExamplePolicy.test to all handler
-  Example3Controller: {
-    '*': [ 'GlobalExample3Policy.test' ], // Apply GlobalExample3Policy.test to all handler except the ones below
-    test: [ 'OverridePolicy.test' ]
-  }
-}
-```
 
 #### `config.routes`
 The list of route objects to be compiled for use by the webserver.
@@ -73,9 +53,13 @@ that takes the following form:
   }
 ```
 
+## Footprints and Policies
+
+Support for Footprints and Policies is provided by [trailpack-footprints](https://github.com/trailsjs/trailpack-footprints).
+
 ## Compatible Trailpacks
 - [trailpack-hapi](https://github.com/trailsjs/trailpack-hapi)
-- [trailpack-express4](https://github.com/trailsjs/trailpack-express4) (In Progress)
+- [trailpack-express4](https://github.com/trailsjs/trailpack-express4)
 - [trailpack-koa](https://github.com/trailsjs/trailpack-koa) (TODO)
 
 ## Contributing

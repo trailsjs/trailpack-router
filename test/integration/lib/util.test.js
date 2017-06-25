@@ -1,35 +1,8 @@
-'use strict'
-
 const assert = require('assert')
 const _ = require('lodash')
 const lib = require('../../../lib')
 
 describe('lib.Util', () => {
-  describe('#decorateRouteWithPrerequisites', () => {
-    it('should decorate route with preconditions', () => {
-      const routes = global.app.config.routes
-      const route = lib.Util.decorateRouteWithPrerequisites(global.app, routes[2])
-
-      assert(_.isObject(route.config))
-      assert(_.isArray(route.config.pre))
-      assert.equal(route.config.pre.length, 1)
-      assert(_.isFunction(route.config.pre[0]))
-    })
-    it('should not decorate route with any preconditions when no policy configuration applies', () => {
-      const routes = global.app.config.routes
-      const route = lib.Util.decorateRouteWithPrerequisites(global.app, routes[0])
-
-      assert.equal(route.config.pre.length, 0)
-    })
-    it('should not decorate route with object handler', () => {
-      const routes = global.app.config.routes
-      const route = lib.Util.decorateRouteWithPrerequisites(global.app, routes[3])
-
-      assert.equal(route.config.pre.length, 0)
-      assert(_.isObject(route.handler))
-    })
-  })
-
   describe('#buildRoute', () => {
     it('should build valid route in typical case', () => {
       const routes = global.app.config.routes
@@ -38,14 +11,45 @@ describe('lib.Util', () => {
       assert(_.isString(route.path))
       assert(_.isFunction(route.handler))
     })
-    it('should attach preconditions to route with relevant policies configuration', () => {
-      const routes = global.app.config.routes
-      const route = lib.Util.buildRoute(global.app, routes[2])
+    it('should resolve the route handler to the correct controller method', () => {
+      const route = lib.Util.buildRoute(global.app, {
+        method: '*',
+        path: '/foo/bar',
+        handler: 'FooController.bar'
+      })
 
-      assert(_.isString(route.path))
-      assert(_.isFunction(route.handler))
-      assert(_.isFunction(route.config.pre[0]))
+      assert.equal(route.handler, global.app.controllers.FooController.bar)
     })
+    it('should resolve the prerequisite handler (string) to the correct policy method', () => {
+      const route = lib.Util.buildRoute(global.app, {
+        method: '*',
+        path: '/foo/bar',
+        handler: 'FooController.bar',
+        config: {
+          pre: [
+            'FooPolicy.bar'
+          ]
+        }
+      })
 
+      assert.equal(route.config.pre[0], global.app.policies.FooPolicy.bar)
+    })
+    it('should resolve the prerequisite handler (object) to the correct policy method', () => {
+      const route = lib.Util.buildRoute(global.app, {
+        method: '*',
+        path: '/foo/bar',
+        handler: 'FooController.bar',
+        config: {
+          pre: [
+            {
+              method: 'FooPolicy.bar'
+            }
+          ]
+        }
+      })
+
+      assert.equal(route.config.pre[0], global.app.policies.FooPolicy.bar)
+    })
   })
+
 })

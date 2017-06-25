@@ -4,21 +4,21 @@
   "description": "Trailpack Router",
   "main": "index.js",
   "dependencies": {
-    "call": "^4.0",
     "joi": "^10.5",
-    "lodash": "^4.17.1",
+    "lodash.get": "^4.4.2",
     "trailpack": "3.0.0-pre.2"
   },
   "devDependencies": {
     "eslint": "^3",
     "eslint-config-trails": "^3",
     "hapi": "^16",
-    "mocha": "^3.2",
-    "smokesignals": "latest",
-    "trails": "latest"
+    "mocha": "^3.4",
+    "nyc": "^11.0.2",
+    "smokesignals": "^3",
+    "trails": "next"
   },
   "scripts": {
-    "test": "eslint . && mocha"
+    "test": "eslint . && nyc mocha"
   },
   "repository": {
     "type": "git",

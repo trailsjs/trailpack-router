@@ -1,5 +1,6 @@
 # trailpack-router
 
+
 [![Gitter][gitter-image]][gitter-url]
 [![NPM version][npm-image]][npm-url]
 [![Build status][ci-image]][ci-url]
@@ -7,8 +8,7 @@
 [![Code Climate][codeclimate-image]][codeclimate-url]
 [![Follow @trailsjs on Twitter][twitter-image]][twitter-url]
 
-Trailpack Router. Aggregates all routes from `config.routes` and attaches
-prerequisites (Policies) to form [hapi.js route objects](http://hapijs.com/api#route-configuration).
+Trailpack Router. Aggregates all routes from `config.routes` to create [hapi.js route objects](http://hapijs.com/api#route-configuration).
 
 ## Usage
 Load from your trailpack config. (This pack is included by default).
@@ -52,6 +52,10 @@ that takes the following form:
     }
   }
 ```
+
+## Footprints and Policies
+
+Support for Footprints and Policies is provided by [trailpack-footprints](https://github.com/trailsjs/trailpack-footprints).
 
 ## Compatible Trailpacks
 - [trailpack-hapi](https://github.com/trailsjs/trailpack-hapi)

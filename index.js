@@ -1,4 +1,3 @@
-const _ = require('lodash')
 const Trailpack = require('trailpack')
 const lib = require('./lib')
 
@@ -17,8 +16,8 @@ module.exports = class Router extends Trailpack {
 
   validate () {
     return Promise.all([
-      Promise.all(_.map(this.app.config.routes, lib.Validator.validateRoute)),
-      lib.Validator.validateRouteList(this.app.config.routes)
+      Promise.all(this.app.config.get('routes').map(lib.Validator.validateRoute)),
+      lib.Validator.validateRouteList(this.app.config.get('routes'))
     ])
   }
 
@@ -29,24 +28,17 @@ module.exports = class Router extends Trailpack {
    * automatically merged into the application's config.routes list.
    */
   initialize () {
-    this.app.routes = _.compact(
-      _.map(this.app.config.routes, route => lib.Util.buildRoute(this.app, route))
-    )
+    this.app.routes = this.app.config.get('routes')
+      .map(route => lib.Util.buildRoute(this.app, route))
+      .filter(route => !!route)
   }
 
   constructor (app) {
     super(app, {
-      config: require('./config'),
-      api: require('./api'),
+      config: { },
+      api: { },
       pkg: require('./package')
     })
-  }
-
-  /**
-   * Expose the "util" module on the public API
-   */
-  get util () {
-    return lib.Util
   }
 }
 

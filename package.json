@@ -6,7 +6,7 @@
   "dependencies": {
     "joi": "^10.5",
     "lodash.get": "^4.4.2",
-    "trailpack": "3.0.0-pre.2"
+    "trailpack": "3.0.0-pre.5"
   },
   "devDependencies": {
     "eslint": "^3",

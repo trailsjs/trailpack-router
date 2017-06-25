@@ -11,7 +11,7 @@
   "devDependencies": {
     "eslint": "^3",
     "eslint-config-trails": "^3",
-    "hapi": "^16",
+    "hapi": "^16.4",
     "mocha": "^3.4",
     "nyc": "^11.0.2",
     "smokesignals": "^3",

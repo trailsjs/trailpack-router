@@ -4,6 +4,7 @@
   "description": "Trailpack Router",
   "main": "index.js",
   "dependencies": {
+    "call": "^4.0.2",
     "joi": "^10.5",
     "lodash.get": "^4.4.2",
     "trailpack": "3.0.0-pre.5"

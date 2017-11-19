@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "joi": "^13",
-    "call": "^4.0.2",
+    "call": "^5",
     "lodash.get": "^4.4.2",
     "trailpack": "^3"
   },

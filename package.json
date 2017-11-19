@@ -1,12 +1,12 @@
 {
   "name": "trailpack-router",
-  "version": "3.1.2",
+  "version": "3.1.3",
   "description": "Trailpack Router",
   "main": "index.js",
   "dependencies": {
-    "joi": "^10.5",
+    "joi": "^13",
     "lodash.get": "^4.4.2",
-    "trailpack": "3.0.0-pre.5"
+    "trailpack": "^3"
   },
   "devDependencies": {
     "eslint": "^3",
